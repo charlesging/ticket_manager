@@ -1,0 +1,37 @@
+
+<%= render 'shared/content_title', title: 'Tickets' %>
+
+<div>
+  <%= form_tag '/tickets', method: :get do %>
+    <span>Show tickets from </span>
+
+    <%= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), include_blank: 'All Projects' %>
+
+    <span> with status </span>
+
+    <%= select_tag :status,  options_for_select(Ticket::STATUSES.map { |s| [s.titleize, s] }, params[:status] ), include_blank: 'Any Status' %>
+
+    <span> tagged </span>
+
+    <%= select_tag :tag, options_from_collection_for_select(Tag.all, :id, :name, params[:tag]), include_blank: '-' %>
+
+    <span>
+      <%= submit_tag 'Update', class: 'btn'%>
+    </span>
+    <%= link_to 'Clear Filters', tickets_path %>
+  <% end %>
+</div>
+
+<br>
+<br>
+
+<% if @tickets.length == 0 %>
+  <p>
+    <i>There are no tickets matching the selected filters. <%= link_to 'Clear filters and show all tickets', tickets_path %></i>
+  </p>
+<% else %>
+  <%= render 'ticket_table', tickets: @tickets %>
+<% end %>
+<br/>
+
+<%= link_to 'New Ticket', new_ticket_path %>

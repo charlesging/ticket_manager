@@ -1,0 +1,115 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+*, html > * {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px 25px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75em 0.75em 0.75em 0;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+dd {
+  margin-left: 0;
+}
+
+textarea, input[type='text'] {
+  margin-top: 5px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+select, option {
+  font-size: 1rem;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.btn-big input {
+  background-color: #1365C0;
+  padding: 10px 20px;
+}
+
+.btn-big {
+  background-color: #1365C0;
+  padding: 10px 20px;
+}
+
+.btn {
+  color: white;
+  font-size: 1rem;
+  background-color: #1365C0;
+}
+
+.btn input {
+}
+
+.errors, .message {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.message {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error {
+  background-color: red;
+  color: white;
+}
+
+.success {
+  background-color: green;
+  color: white;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form div {
+  margin: 15px 0;
+}
+
+.multiple {
+  width: 80px;
+}

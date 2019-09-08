@@ -1,0 +1,10 @@
+
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="message <%= name == 'notice' ? "success" : "error" %>">
+      <p>
+        <%= msg %>
+      </p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,12 @@
+
+<%= render 'shared/errors', obj: @project %>
+
+<%= form_for @project do |f| %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
+  
+  <p><%= f.label :description %></p>
+  <p><%= f.text_area :description, rows: 10 %></p>
+  <%= f.submit(@project.new_record? ? 'Create Project' : 'Update Project', class: 'btn btn-big') %>
+<% end %>
+

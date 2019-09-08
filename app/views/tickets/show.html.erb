@@ -1,0 +1,29 @@
+
+<%= render 'shared/content_title', title: @ticket.name %>
+
+<p>
+  <%= @ticket.body %>
+</p>
+
+<strong>Tags: </strong>
+<span>tag#1, tag#2</span>
+
+<br/>
+<br/>
+<%= link_to 'Edit', edit_ticket_path(@ticket) %>
+
+<br/>
+
+<table>
+  <thead>
+    <td>Status</td>
+    <td>Creator</td>
+    <td>Assignee</td>    
+  </thead>
+  <tbody>
+    <td><%= @ticket.status %></td>
+    <td> **ticket_creator </td>
+    <td><%= @ticket.assignee %></td>
+  </tbody>
+</table>
+
