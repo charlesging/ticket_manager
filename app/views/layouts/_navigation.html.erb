@@ -7,18 +7,16 @@
   </div>
 
 
-  <% if session[:user_id] %>
+  <% if logged_in? %>
     <div>
       signed in as <strong><%= current_user.name %></strong>
       <%= link_to 'Log Out', logout_path %>
     </div>
   <% else%>
-    
     <div>
       <%= link_to 'Login', login_path %> or
       <%= link_to 'Signup',  register_path %>
     </div>
-
   <% end %>
 </nav>
 

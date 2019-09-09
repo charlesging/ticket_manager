@@ -1,5 +1,8 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :destroy, :edit, :update]
+  before_action :require_user, except: [:index, :show]
+
+  # TODO: ensure only the creator of a ticket can edit it (same_user?)
 
   def index
     @tickets = Ticket.all
@@ -23,12 +26,11 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-
     if @ticket.destroy
       flash[:notice] = "Ticket successfully deleted."
       redirect_to tickets_path
     else
-      render :tickets
+      render :index
     end
   end
 

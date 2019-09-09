@@ -16,14 +16,18 @@
 
 <table>
   <thead>
-    <td>Status</td>
-    <td>Creator</td>
-    <td>Assignee</td>    
+    <tr>
+      <th>Status</th>
+      <th>Creator</th>
+      <th>Assignee</th>    
+    </tr>
   </thead>
   <tbody>
-    <td><%= @ticket.status %></td>
-    <td> **ticket_creator </td>
-    <td><%= @ticket.assignee %></td>
+    <tr>
+      <td><%= @ticket.status %></td>
+      <td> **ticket_creator </td>
+      <td><%= @ticket.assignee %></td>
+    </tr>
   </tbody>
 </table>
 

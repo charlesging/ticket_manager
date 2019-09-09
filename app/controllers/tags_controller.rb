@@ -1,6 +1,7 @@
 
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:update, :edit]
+  before_action :set_tag, only: [:update, :edit, :destroy]
+  before_action :require_user, except: [:index, :show]
 
   def index
     @tags = Tag.all
@@ -31,6 +32,15 @@ class TagsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @tag.destroy
+      flash[:notice] = "Ticket successfully deleted."
+      redirect_to tags_path
+    else
+      render :index
+    end    
   end
 
 
