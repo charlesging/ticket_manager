@@ -17,7 +17,6 @@ class TicketsController < ApplicationController
     end
 
     if params[:tag].present?
-      # TODO: add filter for tag when association exists
       @tickets = @tickets.joins(:tags).where('tags.id': params[:tag])
     end
   end
@@ -41,8 +40,10 @@ class TicketsController < ApplicationController
   def create
     # TODO: assign creator (current_user)
     @ticket = Ticket.new(ticket_params)
+    @ticket.creator = current_user
 
     if @ticket.save
+
       flash[:notice] ="Your ticket was created."
       redirect_to tickets_path
     else
@@ -53,12 +54,12 @@ class TicketsController < ApplicationController
   def edit
   end
 
-  def update
+  def update    
     if @ticket.update(ticket_params)
       flash[:notice] ="Your ticket was updated."
       redirect_to tickets_path      
     else
-      render :new
+      render :edit
     end
   end
 
@@ -82,5 +83,6 @@ class TicketsController < ApplicationController
   def ticket_params
     params.require(:ticket).permit!
   end
+
 end
 
