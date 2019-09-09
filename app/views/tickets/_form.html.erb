@@ -21,7 +21,7 @@
   </div>
   <div>
     <%= f.label :assignee, "Assigned To" %> 
-    <%= f.select :assignee, ['user1', 'user2', 'user3'], include_blank: 'No one' %>    
+    <%= f.collection_select :assignee, User.all, :id, :name, include_blank: 'No one' %>    
   </div>
   <div>
     <%= f.label :tags %> 
