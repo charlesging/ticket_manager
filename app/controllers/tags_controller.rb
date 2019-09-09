@@ -1,5 +1,6 @@
 
 class TagsController < ApplicationController
+  before_action :set_tag, only: [:update, :edit]
 
   def index
     @tags = Tag.all
@@ -21,12 +22,9 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])
   end
 
   def update
-    @tag = Tag.find(params[:id])
-
     if @tag.update(tag_params)    
       flash[:notice] = "Tag successfully updated."
       redirect_to tags_path(@tag)
@@ -40,5 +38,9 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit!
+  end
+
+  def set_tag
+    @tag = Tag.find(params[:id])
   end
 end

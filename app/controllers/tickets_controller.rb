@@ -1,4 +1,6 @@
 class TicketsController < ApplicationController
+  before_action :set_ticket, only: [:show, :destroy, :edit, :update]
+
   def index
     @tickets = Ticket.all
     @tickets = if params[:project].present?
@@ -18,11 +20,9 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def destroy
-    @ticket = Ticket.find(params[:id])
 
     if @ticket.destroy
       flash[:notice] = "Ticket successfully deleted."
@@ -49,14 +49,9 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @ticket = Ticket.find(params[:id])
   end
 
   def update
-    @ticket = Ticket.find(params[:id])
-
-    binding.pry
-
     if @ticket.update(ticket_params)
       flash[:notice] ="Your ticket was updated."
       redirect_to tickets_path      
@@ -66,6 +61,10 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
   def filter_tickets(tickets)
     if params[:project] != 'all'
