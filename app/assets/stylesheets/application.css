@@ -29,6 +29,9 @@ nav {
   justify-content: space-between;
 }
 
+strong {
+  
+}
 table {
   display: table;
   width: 100%;
@@ -47,10 +50,11 @@ dd {
   margin-left: 0;
 }
 
-textarea, input[type='text'] {
+textarea, input[type='text'], input[type='password'] {
   margin-top: 5px;
   width: 100%;
   font-size: 1rem;
+  padding: 5px;
 }
 
 select, option {
