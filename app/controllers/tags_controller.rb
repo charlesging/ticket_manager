@@ -4,7 +4,8 @@ class TagsController < ApplicationController
   before_action :require_user, except: [:index, :show]
 
   def index
-    @tags = Tag.all
+    # eager load tickets associations to avoid N + 1 queries in our index view
+    @tags = Tag.all.includes(:tickets)
   end
 
   def new
