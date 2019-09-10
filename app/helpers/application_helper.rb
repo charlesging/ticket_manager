@@ -16,4 +16,8 @@ module ApplicationHelper
   def comment_updated?(comment)
     comment.updated_at != comment.created_at
   end
+
+  def alphabetical(tags)
+    tags.sort { |a, b| a.name.downcase <=> b.name.downcase }
+  end
 end

@@ -13,7 +13,7 @@
 
     <span> tagged </span>
 
-    <%= select_tag :tag, options_from_collection_for_select(Tag.all, :id, :name, params[:tag]), include_blank: '-' %>
+    <%= select_tag :tag, options_from_collection_for_select(alphabetical(Tag.all), :id, :name, params[:tag]), include_blank: '-' %>
 
     <span>
       <%= submit_tag 'Update', class: 'btn'%>

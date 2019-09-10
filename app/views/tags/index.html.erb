@@ -10,9 +10,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @tags.each do |tag| %>
+    <% alphabetical(@tags).each do |tag| %>
       <tr>
-        <td><%= tag.name %></td>
+        <td><%= tag.name.titleize %></td>
         <td><%= link_to tag.tickets.size, tickets_path(tag: tag.id) %></td>
         <td>
           <%= link_to 'Edit', edit_tag_path(tag) %> or 
