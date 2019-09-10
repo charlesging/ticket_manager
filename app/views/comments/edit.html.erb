@@ -1,0 +1,22 @@
+
+<%= render 'shared/content_title', title: 'Comment' %>
+
+
+<%= form_for [@ticket, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <%= render 'shared/errors', obj: @comment %>
+  <% end %>
+
+  <div>
+    <%= f.label :body, "Add a comment" %>
+    <%= f.text_area :body, id: :comment_body, rows: 5 %>
+  </div>
+
+  <div>
+    <%= label_tag :ticket_status, 'Update ticket status' %>
+    <%= select_tag :ticket_status, options_for_select(Ticket::STATUSES.map{ |t| [t.titleize, t]}, params[:ticket_status]), id: :ticket_status, include_blank: 'Do not change' %>
+  </div>
+
+  <%= f.submit "Create comment", class: 'btn btn-big'%> or
+  <%= link_to 'Cancel', ticket_path(@ticket) %>
+<% end %>

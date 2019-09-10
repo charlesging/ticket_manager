@@ -29,9 +29,11 @@ nav {
   justify-content: space-between;
 }
 
-strong {
-  
+.container {
+  border: 1px solid #ddd;
+  padding: 20px;
 }
+
 table {
   margin-top: 15px;
   display: table;

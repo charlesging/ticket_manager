@@ -3,6 +3,8 @@ class Ticket < ActiveRecord::Base
   belongs_to :project
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
 
+  has_many :comments
+
   has_many :tag_tickets
   has_many :tags, through: :tag_tickets
 

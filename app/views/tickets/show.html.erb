@@ -1,33 +1,73 @@
 
 <%= render 'shared/content_title', title: @ticket.name %>
 
-<p>
-  <%= @ticket.body %>
-</p>
+<div class='container'>
 
-<strong>Tags: </strong>
-<span><%= comma_separated_tags(@ticket) %></span>
+  <p>
+    <%= @ticket.body %>
+  </p>
+
+  <strong>Tags: </strong>
+  <span><%= comma_separated_tags(@ticket) %></span>
+
+  <br/>
+  <br/>
+  <%= link_to 'Edit', edit_ticket_path(@ticket) %>
+
+  <br/>
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Creator</th>
+        <th>Assignee</th>    
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @ticket.status.titleize %></td>
+        <td><%= @ticket.creator.name %></td>
+        <td><%= assignee_name(@ticket) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <br/>
 <br/>
-<%= link_to 'Edit', edit_ticket_path(@ticket) %>
+
+<h2>Comments</h2>
+<% if @ticket.comments.empty? %>
+  <p>There are no comments.</p>
+<% else %>
+  <% @ticket.comments.each do |comment| %>
+
+    <%= render 'comments/comment', comment: comment %>
+
+  <% end %>
+<% end %>
 
 <br/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Creator</th>
-      <th>Assignee</th>    
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @ticket.status %></td>
-      <td> **ticket_creator </td>
-      <td><%= @ticket.assignee %></td>
-    </tr>
-  </tbody>
-</table>
+<%= form_for [@ticket, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <%= render 'shared/errors', obj: @comment %>
+  <% end %>
+
+  <div>
+    <%= f.label :body, "Add a comment" %>
+    <%= f.text_area :body, id: :comment_body, rows: 5 %>
+  </div>
+
+  <div>
+    <%= label_tag :ticket_status, 'Update ticket status' %>
+    <%= select_tag :ticket_status, options_for_select(Ticket::STATUSES.map{ |t| [t.titleize, t]}, params[:ticket_status]), id: :ticket_status, include_blank: 'Do not change' %>
+  </div>
+
+  <%= f.submit "Create comment", class: 'btn btn-big'%> or
+  <%= link_to 'Cancel', ticket_path(@ticket) %>
+<% end %>
+
+
+
 

@@ -7,4 +7,13 @@ module ApplicationHelper
   def comma_separated_tags(ticket)
     ticket.tags.map { |t| t.name }.join(', ')
   end
+
+  def assignee_name(ticket)
+    return '' if ticket.assignee.empty?
+    User.find(ticket.assignee.to_i).name
+  end
+
+  def comment_updated?(comment)
+    comment.updated_at != comment.created_at
+  end
 end
